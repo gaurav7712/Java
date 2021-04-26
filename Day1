@@ -1,0 +1,109 @@
+create table called stock and sales with 5 columns each
+
+create table stock(openingprice int,tradedate date,volume int,closeprice int,company varchar(20));
+insert into stock values(20,TO_DATE('12-07-2020','DD-MM-YYYY'),40,100,'abc');
+insert into stock values(10,TO_DATE('13-05-2020','DD-MM-YYYY'),5,5,'def');
+insert into stock values(100,TO_DATE('11-02-2021','DD-MM-YYYY'),50,15,'ghi');
+insert into stock values(100,TO_DATE('11-03-2021','DD-MM-YYYY'),50,150,'jkl');
+insert into stock values(20,TO_DATE('11-02-2021','DD-MM-YYYY'),3,45,'mno');
+select * from stock;
+
+OPENINGPRICE TRADEDATE     VOLUME CLOSEPRICE COMPANY
+------------ --------- ---------- ---------- --------------------
+          20 12-JUL-20         40        100 abc
+          10 13-MAY-20          5          5 def
+         100 11-FEB-21         50         15 ghi
+         100 11-MAR-21         50        150 jkl
+          20 11-FEB-21          3         45 mno
+
+SQL> desc stock;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ OPENINGPRICE                                       NUMBER(38)
+ TRADEDATE                                          DATE
+ VOLUME                                             NUMBER(38)
+ CLOSEPRICE                                         NUMBER(38)
+ COMPANY                                            VARCHAR2(20)
+
+ create table sales
+  2  (customername varchar(20),
+  3  customerid int,
+  4  productid int,
+  5  productnam varchar(30),
+  6  price int);
+  insert into sales values('Sai',1234,635,'Phone',20000);
+  insert into sales values('Abhay',1534,80,'Headphones',1000);
+  insert into sales values('Spoorthi',6666,34,'Charger',300);
+  insert into sales values('Sruthi',6841,23,'Laptop',60000);
+  insert into sales values('Priya',6573,24,'Monitor',40000);
+  select * from sales;
+
+CUSTOMERNAME         CUSTOMERID  PRODUCTID PRODUCTNAM
+-------------------- ---------- ---------- ------------------------------
+     PRICE
+----------
+Sai                        1234        635 Phone
+     20000
+
+Abhay                      1534         80 Headphones
+      1000
+
+Spoorthi                   6666         34 Charger
+       300
+
+
+CUSTOMERNAME         CUSTOMERID  PRODUCTID PRODUCTNAM
+-------------------- ---------- ---------- ------------------------------
+     PRICE
+----------
+Sruthi                     6841         23 Laptop
+     60000
+
+Priya                      6573         24 Monitor
+     40000
+
+
+SQL> desc sales;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ CUSTOMERNAME                                       VARCHAR2(20)
+ CUSTOMERID                                         NUMBER(38)
+ PRODUCTID                                          NUMBER(38)
+ PRODUCTNAM                                         VARCHAR2(30)
+ PRICE                                              NUMBER(38)
+
+ ->display current date and time
+  select to_char(sysdate,'DD/MM/YYYY hh:mi:ss') as DateTime from dual;
+
+DATETIME
+-------------------
+26/04/2021 03:33:53
+
+-> display current date
+SELECT sysdate from dual;
+
+SYSDATE
+---------
+26-APR-21
+
+-> display current date in DD/MM/YYYY format
+ select to_char(sysdate,'DD/MM/YYYY') as "Date" from dual;
+
+Date
+----------
+26/04/2021
+
+->display current day as Monday
+select to_char(sysdate,'Day') as Day from dual;
+
+DAY
+------------------------------------
+Monday
+
+
+-> display date after 10 days from the current date
+ SELECT sysdate+10 as "Date+10" from dual;
+
+Date+10
+---------
+06-MAY-21
