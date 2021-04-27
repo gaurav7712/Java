@@ -1,9 +1,9 @@
 Constraints
 ----------------------------------------------
 SQL> create table details
-  2  (Day varchar(10) ,
+  2  (Day char(10) ,
   3  sess int,
-  4  faculty varchar(15),
+  4  faculty char(15),
   5  sem int,
   6  room varchar(5),
   7  subject char(10),
