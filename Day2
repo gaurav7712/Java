@@ -1,0 +1,102 @@
+ > create table Employee with the following attributes and constraints
+
+EmpFName
+EmpMName
+EmpLastName
+EmpAge -> must be a positive number and less than 50
+EmpCity -> should begin with letter B (Ex: Bangalore , Bijapur)
+EmpDesignation -> can be any manager (Ex sales manager, acc manager)
+EmpId -> primary key must have 5 chars (EX: emp01,emp02,emp03)
+empDOB -> must be a date(data type) column
+create table Employee(
+  2  EmpFName varchar(20),
+  3  EmpMName varchar(20),
+  4  EmpLastName varchar(20),
+  5  EmpAge int check(EmpAge between 1 and 50),
+  6  EmpDesignation varchar(20) check(EmpDesignation in('Sales Manager','Acc Manager','HR')),
+  7  EmpId varchar(5) check(EmpId like 'emp%'),
+  8  empDOB date,
+  9  constraint emp_pk primary key(EmpId));
+
+Table created.
+
+> insert 5 employee details
+
+SQL> insert into Employee values('Mamidi','Abhay','Sai',22,'Bangalore','HR','emp20','20-MAR-1998');
+SQL> insert into Employee values('Laxmi','Sai','Kiran',21,'Bellary',''Sales Manager','emp02','18-MAR-2000');
+SQL> insert into Employee values('Laxmi','Priya','',20,'Bombay',''Acc Manager','emp01','21-DEC-2000');
+SQL> insert into Employee values('Gouni','Sharvani','Reddy',23,'Bangalore',''Sales Manager','emp05','21-MAY-1997');
+SQL> insert into Employee values('Vangala','Spoorthi','Reddy',24,'Bombay',''HR','emp10','21-JAN-1996');
+
+>update any employe and change city name
+update Employee set EmpCity='Bangalore' where EmpId='emp10';
+
+> delete an employee
+-> delete all employees
+->get back all the employees deleted in previous delete
+
+SQL> delete from Employee where EmpId='emp10';
+
+1 row deleted.
+SQL> delete from Employee where EmpId='emp10';
+
+1 row deleted.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> delete from Employee;
+
+4 rows deleted.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from EMployee;
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY         EMPDESIGNATION       EMPID EMPDOB
+--------------- -------------------- ----- ---------
+Mamidi               Abhay                Sai                          22
+Bangalore       HR                   emp20 20-MAR-98
+
+Laxmi                Sai                  Kiran                        21
+Bellary         Sales Manager        emp02 18-MAR-00
+
+Laxmi                Priya                                             20
+Bombay          Acc Manager          emp01 21-DEC-00
+
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY         EMPDESIGNATION       EMPID EMPDOB
+--------------- -------------------- ----- ---------
+Gouni                Sharvani             Reddy                        23
+Bangalore       Sales Manager        emp05 21-MAY-97
+
+
+-> display employee  name and dob in(DD-MM-YYYY) fromat
+ select EmpFName||' '||EmpMName||' '||EmpLastName as EmpName, to_char(empDOB,'DD-MM-YYYY') as DOB from Employee;
+
+EMPNAME                                                        DOB
+-------------------------------------------------------------- ----------
+Mamidi Abhay Sai                                               20-03-1998
+Laxmi Sai Kiran                                                18-03-2000
+Laxmi Priya                                                    21-12-2000
+Gouni Sharvani Reddy                                           21-05-1997
+
+-> display employee  name in following format  
+       Fname   Mname    lname
+Ex:  Sachin  Ramesh  Tendulkar
+should be displayed as  S.R.Tendulkar  
+SQL> select substr(EmpFName,1,1)||'.'||substr(EmpMName,1,1)||'.'||EmpLastName as EmpName from Employee;
+
+EMPNAME
+------------------------------
+M.A.Sai
+L.S.Kiran
+L.P.
+G.S.Reddy
