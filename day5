@@ -9,7 +9,6 @@ return yes if it contans upper case char else return no
 public class UpperCase {
 		String hasUpper(String data){
 			char[] ar= data.toCharArray();
-			int f=0;
 			for(int i=0;i<ar.length;i++)
 			{
 				if(ar[i]>='A'&&ar[i]<='Z')
@@ -34,19 +33,14 @@ siganture same as the abouve function
 public class Number {
 		String hasNumber(String data){
 			char[] ar= data.toCharArray();
-			int f=0;
 			for(int i=0;i<ar.length;i++)
 			{
 				if(ar[i]>='0'&&ar[i]<='9')
 				{
-					f=1;
-					break;
+					return "Yes";
 				}
 			}
-			if(f==1)
-				return "Yes";
-			else
-				return "No";
+			return "No";
 		}
 	public static void main(String[] args) {
 		String test="heLlo1";
@@ -62,19 +56,14 @@ return true if all chars in arg data is in upper case
 public class OnlyCaps {
 	boolean isCapsOnly(String data){
 		char[] ar= data.toCharArray();
-		int f=0;
 		for(int i=0;i<ar.length;i++)
 		{	
 			if(ar[i]<'A'||ar[i]>'Z')
 			{
-				f=1;
-				break;
+				return false;
 			}
 		}
-		if(f==1)
-			return false;
-		else
-			return true;
+		return true;
 		}
 	public static void main(String[] args) {
 		String test="heLlO";
