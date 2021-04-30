@@ -14,14 +14,10 @@ public class UpperCase {
 			{
 				if(ar[i]>='A'&&ar[i]<='Z')
 				{
-					f=1;
-					break;
+					return "Yes";
 				}
 			}
-			if(f==1)
-				return "Yes";
-			else
-				return "No";
+			return "No";
 		}
 	public static void main(String[] args) {
 		String test="heLlo";
